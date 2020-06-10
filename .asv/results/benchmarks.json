@@ -385,6 +385,72 @@
         "version": "1",
         "warmup_time": -1
     },
+    "isin.IsIn.time_isin_i8_1M": {
+        "code": "class IsIn:\n    def time_isin_i8_1M(self, N, M):\n        df = self.df_num\n        values = df.sample(M)['i8_1M'].values\n        df['i8_1M'].isin(values).sum()\n\n    def setup(self, N, M):\n        self.df_num = vaex.open(generate_numerical())[:N]\n        self.df_str = vaex.open(generate_strings())[:N]\n\n    def setup_cache(self):\n        generate_numerical()\n        generate_strings()",
+        "min_run_count": 2,
+        "name": "isin.IsIn.time_isin_i8_1M",
+        "number": 0,
+        "param_names": [
+            "N",
+            "M"
+        ],
+        "params": [
+            [
+                "10000000",
+                "50000000",
+                "100000000"
+            ],
+            [
+                "1",
+                "10",
+                "100",
+                "1000",
+                "1000000"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "setup_cache_key": "/home/github/vaex/benchmarks/isin.py:12",
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "1",
+        "warmup_time": -1
+    },
+    "isin.IsIn.time_isin_str": {
+        "code": "class IsIn:\n    def time_isin_str(self, N, M):\n        df = self.df_str\n        values = df.sample(M)['s'].values\n        df['s'].isin(values).sum()\n\n    def setup(self, N, M):\n        self.df_num = vaex.open(generate_numerical())[:N]\n        self.df_str = vaex.open(generate_strings())[:N]\n\n    def setup_cache(self):\n        generate_numerical()\n        generate_strings()",
+        "min_run_count": 2,
+        "name": "isin.IsIn.time_isin_str",
+        "number": 0,
+        "param_names": [
+            "N",
+            "M"
+        ],
+        "params": [
+            [
+                "10000000",
+                "50000000",
+                "100000000"
+            ],
+            [
+                "1",
+                "10",
+                "100",
+                "1000",
+                "1000000"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "setup_cache_key": "/home/github/vaex/benchmarks/isin.py:12",
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "1",
+        "warmup_time": -1
+    },
     "strings.Strings.time_capitalize": {
         "code": "class Strings:\n    def time_capitalize(self, N):\n        self.df.s.str.capitalize().nop()\n\n    def setup(self, N):\n        partitions = 24\n        df = vaex.open(generate_strings())\n        df_vaex = df[0:int(N)]\n        df_vaex.executor.buffer_size = len(df_vaex) // partitions\n        self.df = df_vaex\n\n    def setup_cache(self):\n        # ensure the dataframe is generated\n        generate_strings()",
         "min_run_count": 2,
