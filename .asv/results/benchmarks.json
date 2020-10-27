@@ -385,6 +385,81 @@
         "version": "1",
         "warmup_time": -1
     },
+    "bookkeeping.time_concat": {
+        "code": "def time_concat(n):\n    df1 = dfs[n]\n    df2 = dfs2[n]\n    df1.concat(df2)\n\ndef setup_concat(n):\n    dfs[n] = time_create(n)\n    dfs2[n] = time_create(n)",
+        "min_run_count": 2,
+        "name": "bookkeeping.time_concat",
+        "number": 0,
+        "param_names": [
+            "param1"
+        ],
+        "params": [
+            [
+                "10",
+                "50",
+                "100",
+                "1000"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "183d1d11f6067add822eeb30c91fa48a1fda7f800d37bbafece2419e13c228da",
+        "warmup_time": -1
+    },
+    "bookkeeping.time_copy": {
+        "code": "def time_copy(n):\n    arr = np.random.random(size=(n, 10))\n    dfs[n].copy()\n\ndef setup_copy(n):\n    dfs[n] = time_create(n)",
+        "min_run_count": 2,
+        "name": "bookkeeping.time_copy",
+        "number": 0,
+        "param_names": [
+            "param1"
+        ],
+        "params": [
+            [
+                "10",
+                "50",
+                "100",
+                "1000"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "225c1bd89b28427d035dced818c015c6e3c9bd8b7d221f9ef2abb715e86becd9",
+        "warmup_time": -1
+    },
+    "bookkeeping.time_create": {
+        "code": "def time_create(n):\n    arr = np.random.random(size=(n, 10))\n    df = vaex.from_arrays(**{str(k):arr[k] for k in range(n)})\n    return df",
+        "min_run_count": 2,
+        "name": "bookkeeping.time_create",
+        "number": 0,
+        "param_names": [
+            "param1"
+        ],
+        "params": [
+            [
+                "10",
+                "50",
+                "100",
+                "1000"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "66f547ece91eaa4859939763acce539f706c856d5caf69cb8bb5a2dca4828844",
+        "warmup_time": -1
+    },
     "isin.IsIn.time_isin_i8_1M": {
         "code": "class IsIn:\n    def time_isin_i8_1M(self, N, M):\n        df = self.df_num\n        values = df.sample(M)['i8_1M'].values\n        df['i8_1M'].isin(values).sum()\n\n    def setup(self, N, M):\n        self.df_num = vaex.open(generate_numerical())[:N]\n        self.df_str = vaex.open(generate_strings())[:N]\n\n    def setup_cache(self):\n        generate_numerical()\n        generate_strings()",
         "min_run_count": 2,
