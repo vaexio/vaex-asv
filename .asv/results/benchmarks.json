@@ -460,6 +460,64 @@
         "version": "66f547ece91eaa4859939763acce539f706c856d5caf69cb8bb5a2dca4828844",
         "warmup_time": -1
     },
+    "export.time_export_correlated": {
+        "code": "def time_export_correlated(N, M):\n    names = df.get_column_names()\n    new_names = [f't{i}' for i in range(M)]\n    for i in range(M):\n        df[f't{i}'] = sum(df[c] for c in names)\n    dfc = df[new_names]\n    with tempfile.TemporaryDirectory() as tmpdir:\n        dfc.export_hdf5(os.path.join(tmpdir, 'bench.hdf5'))\n\ndef setup_df(N, M):\n    global df\n    x = [np.arange(N, dtype=np.float64) for _ in range(M)]\n    df = vaex.from_dict({\n        f'c{i}': x[i] for i in range(M)\n    })",
+        "min_run_count": 2,
+        "name": "export.time_export_correlated",
+        "number": 0,
+        "param_names": [
+            "N",
+            "M"
+        ],
+        "params": [
+            [
+                "1048576",
+                "16777216"
+            ],
+            [
+                "1",
+                "4",
+                "16"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "4b396f367dd1aec6992a930ce0e585ee485cab892ba368cceba085dcb55c22ee",
+        "warmup_time": -1
+    },
+    "export.time_export_plain": {
+        "code": "def time_export_plain(N, M):\n    with tempfile.TemporaryDirectory() as tmpdir:\n        df.export_hdf5(os.path.join(tmpdir, 'bench.hdf5'))\n\ndef setup_df(N, M):\n    global df\n    x = [np.arange(N, dtype=np.float64) for _ in range(M)]\n    df = vaex.from_dict({\n        f'c{i}': x[i] for i in range(M)\n    })",
+        "min_run_count": 2,
+        "name": "export.time_export_plain",
+        "number": 0,
+        "param_names": [
+            "N",
+            "M"
+        ],
+        "params": [
+            [
+                "1048576",
+                "16777216"
+            ],
+            [
+                "1",
+                "4",
+                "16"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "3201fc5115a7e0c53c76c12143dde5c064b829231c6c4dc0e8ecf9b4e90aba53",
+        "warmup_time": -1
+    },
     "isin.IsIn.time_isin_i8_1M": {
         "code": "class IsIn:\n    def time_isin_i8_1M(self, N, M):\n        df = self.df_num\n        values = df.sample(M)['i8_1M'].values\n        df['i8_1M'].isin(values).sum()\n\n    def setup(self, N, M):\n        self.df_num = vaex.open(generate_numerical())[:N]\n        self.df_str = vaex.open(generate_strings())[:N]\n\n    def setup_cache(self):\n        generate_numerical()\n        generate_strings()",
         "min_run_count": 2,
