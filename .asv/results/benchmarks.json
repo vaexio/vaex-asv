@@ -518,6 +518,181 @@
         "version": "3201fc5115a7e0c53c76c12143dde5c064b829231c6c4dc0e8ecf9b4e90aba53",
         "warmup_time": -1
     },
+    "groupbyh2o.GroupbyH2O.time_question_01": {
+        "code": "class GroupbyH2O:\n    def time_question_01(self, N):\n        df = self.df.groupby(['id1']).agg({'v1': 'sum'})\n        if check:\n            chk_sum_cols = ['v1']\n            [df[col].sum() for col in chk_sum_cols]\n\nclass GroupBySetup:\n    def setup(self, N):\n        df = self.df = vaex.open(generate_numerical())[:N]\n        df['id1'] = df['i1_100']\n        df['id2'] = df['i1_100']\n        df['id3'] = df['i4_1M']\n        df['id4'] = df['i1_100']\n        df['id5'] = df['i1_100']\n        df['id6'] = df['i4_1M']\n        df['v1'] = df['i1_10']\n        df['v2'] = df['i1_10']\n        df['v3'] = df['x4']\n\n    def setup_cache(self):\n        # ensure the dataframe is generated\n        generate_numerical()",
+        "min_run_count": 2,
+        "name": "groupbyh2o.GroupbyH2O.time_question_01",
+        "number": 0,
+        "param_names": [
+            "N"
+        ],
+        "params": [
+            [
+                "10000000",
+                "50000000",
+                "100000000"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "setup_cache_key": "/home/github/vaex/benchmarks/groupbyh2o.py:22",
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "1",
+        "warmup_time": -1
+    },
+    "groupbyh2o.GroupbyH2O.time_question_02": {
+        "code": "class GroupbyH2O:\n    def time_question_02(self, N):\n        df = self.df.groupby(['id1', 'id2']).agg({'v1': 'sum'})\n        if check:\n            chk_sum_cols=['v1']\n            [df[col].sum() for col in chk_sum_cols]\n\nclass GroupBySetup:\n    def setup(self, N):\n        df = self.df = vaex.open(generate_numerical())[:N]\n        df['id1'] = df['i1_100']\n        df['id2'] = df['i1_100']\n        df['id3'] = df['i4_1M']\n        df['id4'] = df['i1_100']\n        df['id5'] = df['i1_100']\n        df['id6'] = df['i4_1M']\n        df['v1'] = df['i1_10']\n        df['v2'] = df['i1_10']\n        df['v3'] = df['x4']\n\n    def setup_cache(self):\n        # ensure the dataframe is generated\n        generate_numerical()",
+        "min_run_count": 2,
+        "name": "groupbyh2o.GroupbyH2O.time_question_02",
+        "number": 0,
+        "param_names": [
+            "N"
+        ],
+        "params": [
+            [
+                "10000000",
+                "50000000",
+                "100000000"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "setup_cache_key": "/home/github/vaex/benchmarks/groupbyh2o.py:22",
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "1",
+        "warmup_time": -1
+    },
+    "groupbyh2o.GroupbyH2O.time_question_03": {
+        "code": "class GroupbyH2O:\n    def time_question_03(self, N):\n        df = self.df.groupby(['id3']).agg({'v1': 'sum', 'v3': 'mean'})\n        if check:\n            chk_sum_cols=['v1', 'v3']\n            [df[col].sum() for col in chk_sum_cols]\n\nclass GroupBySetup:\n    def setup(self, N):\n        df = self.df = vaex.open(generate_numerical())[:N]\n        df['id1'] = df['i1_100']\n        df['id2'] = df['i1_100']\n        df['id3'] = df['i4_1M']\n        df['id4'] = df['i1_100']\n        df['id5'] = df['i1_100']\n        df['id6'] = df['i4_1M']\n        df['v1'] = df['i1_10']\n        df['v2'] = df['i1_10']\n        df['v3'] = df['x4']\n\n    def setup_cache(self):\n        # ensure the dataframe is generated\n        generate_numerical()",
+        "min_run_count": 2,
+        "name": "groupbyh2o.GroupbyH2O.time_question_03",
+        "number": 0,
+        "param_names": [
+            "N"
+        ],
+        "params": [
+            [
+                "10000000",
+                "50000000",
+                "100000000"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "setup_cache_key": "/home/github/vaex/benchmarks/groupbyh2o.py:22",
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "1",
+        "warmup_time": -1
+    },
+    "groupbyh2o.GroupbyH2O.time_question_04": {
+        "code": "class GroupbyH2O:\n    def time_question_04(self, N):\n        df = self.df.groupby(['id4']).agg({'v1':'mean', 'v2':'mean', 'v3':'mean'})\n        if check:\n            chk_sum_cols=['v1', 'v2', 'v3']\n            [df[col].sum() for col in chk_sum_cols]\n\nclass GroupBySetup:\n    def setup(self, N):\n        df = self.df = vaex.open(generate_numerical())[:N]\n        df['id1'] = df['i1_100']\n        df['id2'] = df['i1_100']\n        df['id3'] = df['i4_1M']\n        df['id4'] = df['i1_100']\n        df['id5'] = df['i1_100']\n        df['id6'] = df['i4_1M']\n        df['v1'] = df['i1_10']\n        df['v2'] = df['i1_10']\n        df['v3'] = df['x4']\n\n    def setup_cache(self):\n        # ensure the dataframe is generated\n        generate_numerical()",
+        "min_run_count": 2,
+        "name": "groupbyh2o.GroupbyH2O.time_question_04",
+        "number": 0,
+        "param_names": [
+            "N"
+        ],
+        "params": [
+            [
+                "10000000",
+                "50000000",
+                "100000000"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "setup_cache_key": "/home/github/vaex/benchmarks/groupbyh2o.py:22",
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "1",
+        "warmup_time": -1
+    },
+    "groupbyh2o.GroupbyH2O.time_question_05": {
+        "code": "class GroupbyH2O:\n    def time_question_05(self, N):\n        df = self.df.groupby(['id6']).agg({'v1': 'sum', 'v2': 'sum', 'v3': 'sum'})\n        if check:\n            chk_sum_cols=['v1', 'v2', 'v3']\n            [df[col].sum() for col in chk_sum_cols]\n\nclass GroupBySetup:\n    def setup(self, N):\n        df = self.df = vaex.open(generate_numerical())[:N]\n        df['id1'] = df['i1_100']\n        df['id2'] = df['i1_100']\n        df['id3'] = df['i4_1M']\n        df['id4'] = df['i1_100']\n        df['id5'] = df['i1_100']\n        df['id6'] = df['i4_1M']\n        df['v1'] = df['i1_10']\n        df['v2'] = df['i1_10']\n        df['v3'] = df['x4']\n\n    def setup_cache(self):\n        # ensure the dataframe is generated\n        generate_numerical()",
+        "min_run_count": 2,
+        "name": "groupbyh2o.GroupbyH2O.time_question_05",
+        "number": 0,
+        "param_names": [
+            "N"
+        ],
+        "params": [
+            [
+                "10000000",
+                "50000000",
+                "100000000"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "setup_cache_key": "/home/github/vaex/benchmarks/groupbyh2o.py:22",
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "1",
+        "warmup_time": -1
+    },
+    "groupbyh2o.GroupbyH2O.time_question_07": {
+        "code": "class GroupbyH2O:\n    def time_question_07(self, N):\n        df = self.df.groupby(['id3']).agg({'v1': 'max', 'v2': 'min'})\n        df['range_x_y'] = df['v1'] - df['v2']\n        if check:\n            chk_sum_cols=['range_v1_v2']\n            [df[col].sum() for col in chk_sum_cols]\n\nclass GroupBySetup:\n    def setup(self, N):\n        df = self.df = vaex.open(generate_numerical())[:N]\n        df['id1'] = df['i1_100']\n        df['id2'] = df['i1_100']\n        df['id3'] = df['i4_1M']\n        df['id4'] = df['i1_100']\n        df['id5'] = df['i1_100']\n        df['id6'] = df['i4_1M']\n        df['v1'] = df['i1_10']\n        df['v2'] = df['i1_10']\n        df['v3'] = df['x4']\n\n    def setup_cache(self):\n        # ensure the dataframe is generated\n        generate_numerical()",
+        "min_run_count": 2,
+        "name": "groupbyh2o.GroupbyH2O.time_question_07",
+        "number": 0,
+        "param_names": [
+            "N"
+        ],
+        "params": [
+            [
+                "10000000",
+                "50000000",
+                "100000000"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "setup_cache_key": "/home/github/vaex/benchmarks/groupbyh2o.py:22",
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "1",
+        "warmup_time": -1
+    },
+    "groupbyh2o.GroupbyH2O.time_question_10": {
+        "code": "class GroupbyH2O:\n    def time_question_10(self, N):\n        df = self.df.groupby(['id1', 'id2', 'id3', 'id4', 'id5', 'id6']).agg({'v3':'sum', 'v1':'count'})\n        if check:\n            chk_sum_cols=['v3', 'v1']\n            [df[col].sum() for col in chk_sum_cols]\n\nclass GroupBySetup:\n    def setup(self, N):\n        df = self.df = vaex.open(generate_numerical())[:N]\n        df['id1'] = df['i1_100']\n        df['id2'] = df['i1_100']\n        df['id3'] = df['i4_1M']\n        df['id4'] = df['i1_100']\n        df['id5'] = df['i1_100']\n        df['id6'] = df['i4_1M']\n        df['v1'] = df['i1_10']\n        df['v2'] = df['i1_10']\n        df['v3'] = df['x4']\n\n    def setup_cache(self):\n        # ensure the dataframe is generated\n        generate_numerical()",
+        "min_run_count": 2,
+        "name": "groupbyh2o.GroupbyH2O.time_question_10",
+        "number": 0,
+        "param_names": [
+            "N"
+        ],
+        "params": [
+            [
+                "10000000",
+                "50000000",
+                "100000000"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "setup_cache_key": "/home/github/vaex/benchmarks/groupbyh2o.py:22",
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "1",
+        "warmup_time": -1
+    },
     "isin.IsIn.time_isin_i8_1M": {
         "code": "class IsIn:\n    def time_isin_i8_1M(self, N, M):\n        df = self.df_num\n        values = df.sample(M)['i8_1M'].values\n        df['i8_1M'].isin(values).sum()\n\n    def setup(self, N, M):\n        self.df_num = vaex.open(generate_numerical())[:N]\n        self.df_str = vaex.open(generate_strings())[:N]\n\n    def setup_cache(self):\n        generate_numerical()\n        generate_strings()",
         "min_run_count": 2,
