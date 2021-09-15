@@ -518,6 +518,81 @@
         "version": "3201fc5115a7e0c53c76c12143dde5c064b829231c6c4dc0e8ecf9b4e90aba53",
         "warmup_time": -1
     },
+    "groupby.GroupbyBasic.time_count_i1_100": {
+        "code": "class GroupbyBasic:\n    def time_count_i1_100(self, N):\n        df = self.df.groupby(['i1_100'], agg='count')\n\n    def setup(self, N):\n        self.df = vaex.open(generate_numerical())[:N]\n        self.df['i4_1M_POT'] = self.df['i4_1M'] * 2 ** 8\n\n    def setup_cache(self):\n        # ensure the dataframe is generated\n        generate_numerical()",
+        "min_run_count": 2,
+        "name": "groupby.GroupbyBasic.time_count_i1_100",
+        "number": 0,
+        "param_names": [
+            "N"
+        ],
+        "params": [
+            [
+                "10000000",
+                "50000000",
+                "100000000"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "setup_cache_key": "/home/github/vaex/benchmarks/groupby.py:13",
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "1",
+        "warmup_time": -1
+    },
+    "groupby.GroupbyBasic.time_count_i4_1M": {
+        "code": "class GroupbyBasic:\n    def time_count_i4_1M(self, N):\n        df = self.df.groupby(['i4_1M'], agg='count')\n\n    def setup(self, N):\n        self.df = vaex.open(generate_numerical())[:N]\n        self.df['i4_1M_POT'] = self.df['i4_1M'] * 2 ** 8\n\n    def setup_cache(self):\n        # ensure the dataframe is generated\n        generate_numerical()",
+        "min_run_count": 2,
+        "name": "groupby.GroupbyBasic.time_count_i4_1M",
+        "number": 0,
+        "param_names": [
+            "N"
+        ],
+        "params": [
+            [
+                "10000000",
+                "50000000",
+                "100000000"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "setup_cache_key": "/home/github/vaex/benchmarks/groupby.py:13",
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "1",
+        "warmup_time": -1
+    },
+    "groupby.GroupbyBasic.time_count_i4_1M_POT": {
+        "code": "class GroupbyBasic:\n    def time_count_i4_1M_POT(self, N):\n        df = self.df.groupby(['i4_1M_POT'], agg='count')\n\n    def setup(self, N):\n        self.df = vaex.open(generate_numerical())[:N]\n        self.df['i4_1M_POT'] = self.df['i4_1M'] * 2 ** 8\n\n    def setup_cache(self):\n        # ensure the dataframe is generated\n        generate_numerical()",
+        "min_run_count": 2,
+        "name": "groupby.GroupbyBasic.time_count_i4_1M_POT",
+        "number": 0,
+        "param_names": [
+            "N"
+        ],
+        "params": [
+            [
+                "10000000",
+                "50000000",
+                "100000000"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "setup_cache_key": "/home/github/vaex/benchmarks/groupby.py:13",
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "1",
+        "warmup_time": -1
+    },
     "groupbyh2o.GroupbyH2O.time_question_01": {
         "code": "class GroupbyH2O:\n    def time_question_01(self, N):\n        df = self.df.groupby(['id1']).agg({'v1': 'sum'})\n        if check:\n            chk_sum_cols = ['v1']\n            [df[col].sum() for col in chk_sum_cols]\n\nclass GroupBySetup:\n    def setup(self, N):\n        df = self.df = vaex.open(generate_numerical())[:N]\n        df['id1'] = df['i1_100']\n        df['id2'] = df['i1_100']\n        df['id3'] = df['i4_1M']\n        df['id4'] = df['i1_100']\n        df['id5'] = df['i1_100']\n        df['id6'] = df['i4_1M']\n        df['v1'] = df['i1_10']\n        df['v2'] = df['i1_10']\n        df['v3'] = df['x4']\n\n    def setup_cache(self):\n        # ensure the dataframe is generated\n        generate_numerical()",
         "min_run_count": 2,
