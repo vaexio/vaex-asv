@@ -518,6 +518,78 @@
         "version": "3201fc5115a7e0c53c76c12143dde5c064b829231c6c4dc0e8ecf9b4e90aba53",
         "warmup_time": -1
     },
+    "filter.Filter.time_filter_and_head": {
+        "code": "class Filter:\n    def time_filter_and_head(self, N):\n        self.dff.head()\n\n    def setup(self, N):\n        self.df = vaex.open(generate_numerical())[:N]\n        self.df['i4_1M_POT'] = self.df['i4_1M'] * 2 ** 8\n        self.dff = self.df[(self.df.x > 0) & (self.df.y < 0)]\n        len(self.dff)  # fill cache\n\n    def setup_cache(self):\n        # ensure the dataframe is generated\n        generate_numerical()",
+        "min_run_count": 2,
+        "name": "filter.Filter.time_filter_and_head",
+        "number": 0,
+        "param_names": [
+            "N"
+        ],
+        "params": [
+            [
+                "10000000",
+                "100000000"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "setup_cache_key": "/home/github/vaex/benchmarks/filter.py:13",
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "1",
+        "warmup_time": -1
+    },
+    "filter.Filter.time_filter_and_tail": {
+        "code": "class Filter:\n    def time_filter_and_tail(self, N):\n        self.dff.tail()\n\n    def setup(self, N):\n        self.df = vaex.open(generate_numerical())[:N]\n        self.df['i4_1M_POT'] = self.df['i4_1M'] * 2 ** 8\n        self.dff = self.df[(self.df.x > 0) & (self.df.y < 0)]\n        len(self.dff)  # fill cache\n\n    def setup_cache(self):\n        # ensure the dataframe is generated\n        generate_numerical()",
+        "min_run_count": 2,
+        "name": "filter.Filter.time_filter_and_tail",
+        "number": 0,
+        "param_names": [
+            "N"
+        ],
+        "params": [
+            [
+                "10000000",
+                "100000000"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "setup_cache_key": "/home/github/vaex/benchmarks/filter.py:13",
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "1",
+        "warmup_time": -1
+    },
+    "filter.Filter.time_filter_count": {
+        "code": "class Filter:\n    def time_filter_count(self, N):\n        self.dff.count('i1_100')  # but this should be super fast, since the cache\n\n    def setup(self, N):\n        self.df = vaex.open(generate_numerical())[:N]\n        self.df['i4_1M_POT'] = self.df['i4_1M'] * 2 ** 8\n        self.dff = self.df[(self.df.x > 0) & (self.df.y < 0)]\n        len(self.dff)  # fill cache\n\n    def setup_cache(self):\n        # ensure the dataframe is generated\n        generate_numerical()",
+        "min_run_count": 2,
+        "name": "filter.Filter.time_filter_count",
+        "number": 0,
+        "param_names": [
+            "N"
+        ],
+        "params": [
+            [
+                "10000000",
+                "100000000"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "setup_cache_key": "/home/github/vaex/benchmarks/filter.py:13",
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "1",
+        "warmup_time": -1
+    },
     "groupby.GroupbyBasic.time_count_i1_100": {
         "code": "class GroupbyBasic:\n    def time_count_i1_100(self, N):\n        df = self.df.groupby(['i1_100'], agg='count')\n\n    def setup(self, N):\n        self.df = vaex.open(generate_numerical())[:N]\n        self.df['i4_1M_POT'] = self.df['i4_1M'] * 2 ** 8\n\n    def setup_cache(self):\n        # ensure the dataframe is generated\n        generate_numerical()",
         "min_run_count": 2,
