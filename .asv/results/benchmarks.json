@@ -250,7 +250,7 @@
         "warmup_time": -1
     },
     "aggregates.GroupByCat1K.time_binby_iB_1M": {
-        "code": "class GroupByCat1K:\n    def time_binby_iB_1M(self, N, B):\n        self.df.groupby(f'i{B}_1k', agg='count')\n\n    def setup(self, N, B):\n        super().setup(N)\n\nclass Aggregates:\n    def setup_cache(self):\n        # ensure the dataframe is generated\n        generate_numerical()",
+        "code": "class GroupByCat1K:\n    def time_binby_iB_1M(self, N, B):\n        self.df.groupby(f'i{B}_1K', agg='count')\n\n    def setup(self, N, B):\n        super().setup(N)\n\nclass Aggregates:\n    def setup_cache(self):\n        # ensure the dataframe is generated\n        generate_numerical()",
         "min_run_count": 2,
         "name": "aggregates.GroupByCat1K.time_binby_iB_1M",
         "number": 0,
