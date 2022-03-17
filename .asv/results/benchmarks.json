@@ -906,6 +906,57 @@
         "version": "1",
         "warmup_time": -1
     },
+    "sort.time_sort_ints": {
+        "code": "def time_sort_ints(N, T):\n    df = vaex.open(generate_numerical())\n    df = df[:N]\n    df.sort(f'i8_{T}')",
+        "min_run_count": 2,
+        "name": "sort.time_sort_ints",
+        "number": 0,
+        "param_names": [
+            "param1",
+            "param2"
+        ],
+        "params": [
+            [
+                "100000",
+                "1000000"
+            ],
+            [
+                "'100'",
+                "'1M'"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "c3ce432652f1d4592729e4709f687780e62392977c8b642db4cd00f5654d1eed",
+        "warmup_time": -1
+    },
+    "sort.time_sort_strings": {
+        "code": "def time_sort_strings(N):\n    df = vaex.open(generate_strings())\n    df = df[:N]\n    df.sort(df.s)",
+        "min_run_count": 2,
+        "name": "sort.time_sort_strings",
+        "number": 0,
+        "param_names": [
+            "param1"
+        ],
+        "params": [
+            [
+                "100000",
+                "1000000"
+            ]
+        ],
+        "processes": 2,
+        "repeat": 0,
+        "sample_time": 0.01,
+        "timeout": 60.0,
+        "type": "time",
+        "unit": "seconds",
+        "version": "d6b69a1506e4675e2eb8588823b5393dbe3d1462cb290c097f5eb37041b9ef02",
+        "warmup_time": -1
+    },
     "strings.Strings.time_capitalize": {
         "code": "class Strings:\n    def time_capitalize(self, N):\n        self.df.s.str.capitalize().nop()\n\n    def setup(self, N):\n        partitions = 24\n        df = vaex.open(generate_strings())\n        df_vaex = df[0:int(N)]\n        df_vaex.executor.buffer_size = len(df_vaex) // partitions\n        self.df = df_vaex\n\n    def setup_cache(self):\n        # ensure the dataframe is generated\n        generate_strings()",
         "min_run_count": 2,
